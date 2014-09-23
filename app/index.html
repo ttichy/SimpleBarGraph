@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/barGraph.js"></script>
+</head>
+<body>
+
+  <p>Nothing here {{'yet' + '!'}}</p>
+
+  <body>
+	<div id="graphDiv1" style="width: 160px; height:14px; background-color: #FF0000;">
+    </div>
+    <br>
+
+    
+    <script>
+        (function() {
+
+			debugger;
+            var graph = new BarGraph("graphDiv1");
+            graph.update(.97);
+        }());
+    </script>
+  
+  
+</body>
+</html>
