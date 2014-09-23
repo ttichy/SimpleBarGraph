@@ -13,19 +13,28 @@
   <p>Nothing here {{'yet' + '!'}}</p>
 
   <body>
-	<div id="graphDiv1" style="width: 160px; height:14px; background-color: #FF0000;">
+	<div id="graphDiv1" style="width: 160px; height:18px; background-color: #FF0000;">
     </div>
     <br>
 
-    
-    <script>
+    <canvas
+    id      = myCanvas
+    width   = 400
+    height  = 400
+    style   = "border:1px solid #000"
+    >
+  </canvas>
+      
+
+      <script>
         (function() {
 
-			debugger;
             var graph = new BarGraph("graphDiv1");
-            graph.update(.97);
+            graph.update(.99);
         }());
-    </script>
+
+
+      </script>
   
   
 </body>

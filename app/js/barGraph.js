@@ -7,10 +7,6 @@ function BarGraph(element) {
 	var clientHeight;
 	var clientWidth;
 
-	
-	
-	//canvas context used for drawing
-	var ctx;
 
 	var createCanvas = function(divName) {
 		var div = document.getElementById(divName);
@@ -52,23 +48,41 @@ function BarGraph(element) {
 		
 		//draw background
 		ctx.fillStyle=that.fillColor;
-		ctx.fillRect(0,0,clientWidth,clientHeight);
+		ctx.fillRect(0, 0, clientWidth, clientHeight);
 		
+	
 		var barcolor=evaluateBarColor(percent);
 		
 		if(that.isHorizontal) {
 			var percentage = percent * clientWidth;
 			ctx.fillStyle=barcolor;
-			ctx.fillRect(0,0,percentage,clientHeight);
+			ctx.fillRect(0, 0, percentage, clientHeight);
+			ctx.strokeStyle = "black";
+		    ctx.lineWidth = 1;
+		    ctx.rect(0, 0, percentage, clientHeight)
+		    ctx.stroke();
 		}
 		else
 		{
 			var percentage = percent * clientHeight;
 			ctx.fillStyle=barcolor;
-			ctx.fillRect(0,0,clientWidth,percentage);
-		}		
-		
-		
+			ctx.fillRect(0, 0, clientWidth, percentage);
+			ctx.strokeStyle = "black";
+			ctx.lineWidth = 1;
+			ctx.rect(0, 0, clientWidth, percentage)
+			ctx.stroke();
+		}
+
+
+
+        //paint border
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "black";
+        ctx.rect(that.borderWidth / 2, that.borderWidth / 2, clientWidth - that.borderWidth , clientHeight - that.borderWidth );
+
+        ctx.stroke();
+
     };
 	
     // Update method sets the end bar array and starts the animation
@@ -77,7 +91,7 @@ function BarGraph(element) {
     };
 	
 	
-	    // Public properties and methods
+	// Public properties and methods
 
 	this.isHorizontal=true;
 	this.fillColor ='#E0E0EB';
@@ -85,10 +99,11 @@ function BarGraph(element) {
 	this.barWarnColor="yellow";
 	this.barAlarmColor ="red";
 	this.barWarnValue=.75;		//greater than this value means bar is yellow
-	this.barAlarmValue=.88;		//greater than this value means bar is red
+	this.barAlarmValue = .88;		//greater than this value means bar is red
+    this.borderWidth = 2;
 	
 	
-	ctx = createCanvas(element);
+	var ctx = createCanvas(element);
 	
 	return this
 	
